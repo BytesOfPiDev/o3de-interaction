@@ -16,4 +16,11 @@ namespace GameInteraction
 
     // Interface TypeIds
     inline constexpr const char* GameInteractionRequestsTypeId = "{184FEC4E-F90B-4AD2-A191-71FCB093CB7C}";
+    inline constexpr auto InteractableComponentTypeId = "017DB387-D8B8-4976-A4D7-C33B34DB1275";
+
 } // namespace GameInteraction
+
+namespace bop
+{
+    using namespace GameInteraction;
+}

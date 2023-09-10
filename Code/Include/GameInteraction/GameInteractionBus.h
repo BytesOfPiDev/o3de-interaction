@@ -16,8 +16,7 @@ namespace GameInteraction
         // Put your public methods here
     };
 
-    class GameInteractionBusTraits
-        : public AZ::EBusTraits
+    class GameInteractionBusTraits : public AZ::EBusTraits
     {
     public:
         //////////////////////////////////////////////////////////////////////////
