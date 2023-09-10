@@ -1,0 +1,18 @@
+{
+    "Amazon": {
+        "AssetProcessor": {
+            "Settings": {
+                "ScanFolder GameInteraction/Assets": {
+                    "watch": "@GEMROOT:GameInteraction@/Assets",
+                    "recursive": 1,
+                    "order": 101
+                },
+                "ScanFolder GameInteraction/Registry": {
+                    "watch": "@GEMROOT:GameInteraction@/Registry",
+                    "recursive": 1,
+                    "order": 102
+                }
+            }
+        }
+    }
+}

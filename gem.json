@@ -1,0 +1,29 @@
+{
+    "gem_name": "GameInteraction",
+    "version": "1.0.0",
+    "display_name": "Game Interaction System",
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/BytesOfPiDev/o3de-interaction/blob/main/LICENSE",
+    "origin": "Andre Mitchell",
+    "origin_url": "https://github.com/BytesOfPiDev/o3de-interaction",
+    "type": "Code",
+    "summary": "An interaction system for 3D games in O3DE",
+    "canonical_tags": [
+        "Gem"
+    ],
+    "user_tags": [
+        "GameInteraction"
+    ],
+    "platforms": [
+        "Windows",
+        "Linux"
+    ],
+    "icon_path": "",
+    "requirements": "",
+    "documentation_url": "",
+    "dependencies": [],
+    "repo_uri": "https://github.com/BytesOfPiDev/o3de-interaction",
+    "compatible_engines": [],
+    "engine_api_dependencies": [],
+    "restricted": "GameInteraction"
+}
