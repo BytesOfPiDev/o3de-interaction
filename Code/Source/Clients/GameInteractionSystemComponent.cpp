@@ -22,9 +22,38 @@ namespace bop
             Interact,
             ({ "Interactor", "" }));
 
+        ~InteractableRequestBusBehaviorHandler() override = default;
+
         void Interact(AZ::EntityId const& interactingEntityId) override
         {
             Call(FN_Interact, interactingEntityId);
+        }
+    };
+
+    class InteractableNotificationBusBehaviorHandler
+        : public InteractableNotificationBus::Handler
+        , public AZ::BehaviorEBusHandler
+    {
+    public:
+        AZ_EBUS_BEHAVIOR_BINDER_WITH_DOC(
+            InteractableNotificationBusBehaviorHandler,
+            "{28BE1FDB-80F0-48E5-B62D-B3C5FE0128DF}",
+            AZ::SystemAllocator,
+            OnTriggerAreaEntered,
+            ({ "OnTriggerAreaEntered", "" }),
+            OnTriggerAreaExited,
+            ({ "OnTriggerAreaExited", "" }));
+
+        ~InteractableNotificationBusBehaviorHandler() override = default;
+
+        void OnTriggerAreaEntered(AZ::EntityId const& enteredEntityId) override
+        {
+            Call(FN_OnTriggerAreaEntered, enteredEntityId);
+        }
+
+        void OnTriggerAreaExited(AZ::EntityId const& exitedEntityId) override
+        {
+            Call(FN_OnTriggerAreaExited, exitedEntityId);
         }
     };
 
@@ -71,6 +100,14 @@ namespace GameInteraction
                 ->Attribute(AZ::Script::Attributes::Category, "BoP/Interaction")
                 ->Handler<bop::InteractableRequestBusBehaviorHandler>()
                 ->EventWithBus<bop::InteractableRequestBus>("Interact", &bop::InteractableRequests::Interact);
+
+            behaviorContext->EBus<bop::InteractableNotificationBus>("InteractableNotificationBus")
+                ->Attribute(AZ::Script::Attributes::Category, "Bop/Interaction")
+                ->Handler<bop::InteractableNotificationBusBehaviorHandler>()
+                ->EventWithBus<bop::InteractableNotificationBus>(
+                    "OnInteractableTriggerEntered", &bop::InteractableNotificationBus::Events::OnTriggerAreaEntered)
+                ->EventWithBus<bop::InteractableNotificationBus>(
+                    "OnInteractableTriggerExited", &bop::InteractableNotificationBus::Events::OnTriggerAreaExited);
 
             behaviorContext->EBus<bop::InteractorNotificationBus>("InteractorNotificationBus")
                 ->Attribute(AZ::Script::Attributes::Category, "BoP/Interaction")

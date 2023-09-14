@@ -30,7 +30,7 @@ namespace bop
 
             if (auto editContext = serialize->GetEditContext())
             {
-                editContext->Class<InteractableComponent>("InteractableComponent", "")
+                editContext->Class<InteractableComponent>("Interactable", "")
                     ->ClassElement(AZ::Edit::ClassElements::EditorData, "")
                     ->Attribute(AZ::Edit::Attributes::Category, "BoP/Interaction")
                     ->Attribute(AZ::Edit::Attributes::AppearsInAddComponentMenu, AZ_CRC_CE("Game"))
@@ -43,7 +43,7 @@ namespace bop
             behaviorContext->Class<InteractableComponent>("InteractableComponent")
                 ->Attribute(AZ::Script::Attributes::Category, "BoP/Interaction")
                 ->RequestBus("InteractableRequestBus")
-                ->NotificationBus("InteractorNotificationBus");
+                ->NotificationBus("InteractableNotificationBus");
         }
     }
 
@@ -153,6 +153,7 @@ namespace bop
             otherEntityName.c_str());
 
         InteractorNotificationBus::Event(otherEntityId, &InteractorNotificationBus::Events::OnInteractionAvailable, GetEntityId());
+        InteractableNotificationBus::Event(GetEntityId(), &InteractableNotificationBus::Events::OnTriggerAreaEntered, otherEntityId);
     }
 
     void InteractableComponent::OnTriggerExit(AzPhysics::TriggerEvent const& triggerEvent)
@@ -169,6 +170,7 @@ namespace bop
             otherEntityName.c_str());
 
         InteractorNotificationBus::Event(otherEntityId, &InteractorNotificationBus::Events::OnInteractionUnavailable, GetEntityId());
+        InteractableNotificationBus::Event(GetEntityId(), &InteractableNotificationBus::Events::OnTriggerAreaExited, otherEntityId);
     }
 
     void InteractableComponent::Interact(AZ::EntityId const& /*interactorEntityId*/){};

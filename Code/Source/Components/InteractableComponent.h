@@ -23,8 +23,12 @@ namespace bop
     {
     public:
         AZ_COMPONENT(InteractableComponent, InteractableComponentTypeId); // NOLINT
+        AZ_DISABLE_COPY_MOVE(InteractableComponent);
 
         static void Reflect(AZ::ReflectContext* context);
+
+        InteractableComponent() = default;
+        ~InteractableComponent() override = default;
 
         void Init() override;
         void Activate() override;

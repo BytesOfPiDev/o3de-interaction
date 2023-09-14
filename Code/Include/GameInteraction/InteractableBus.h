@@ -11,7 +11,6 @@ namespace bop
     {
     public:
         AZ_DISABLE_COPY_MOVE(InteractableRequests); // NOLINT
-        AZ_RTTI(InteractableRequests, "97B88B2C-6549-4ABD-AE4C-CA615745FA9B"); // NOLINT
 
         InteractableRequests() = default;
         virtual ~InteractableRequests() = default;
@@ -25,4 +24,17 @@ namespace bop
     };
 
     using InteractableRequestBus = AZ::EBus<InteractableRequests, AZ::ComponentBus>;
+
+    class InteractableNotifications
+    {
+    public:
+        AZ_DISABLE_COPY_MOVE(InteractableNotifications);
+
+        InteractableNotifications() = default;
+
+        virtual void OnTriggerAreaEntered(AZ::EntityId const& /*entityThatEntered*/){};
+        virtual void OnTriggerAreaExited(AZ::EntityId const& /*entityThatExited*/){};
+    };
+
+    using InteractableNotificationBus = AZ::EBus<InteractableNotifications, AZ::ComponentBus>;
 } // namespace bop
