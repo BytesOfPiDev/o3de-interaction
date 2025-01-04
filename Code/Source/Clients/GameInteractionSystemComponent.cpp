@@ -102,7 +102,7 @@ namespace GameInteraction
                 ->EventWithBus<bop::InteractableRequestBus>("Interact", &bop::InteractableRequests::Interact);
 
             behaviorContext->EBus<bop::InteractableNotificationBus>("InteractableNotificationBus")
-                ->Attribute(AZ::Script::Attributes::Category, "Bop/Interaction")
+                ->Attribute(AZ::Script::Attributes::Category, "BoP/Interaction")
                 ->Handler<bop::InteractableNotificationBusBehaviorHandler>()
                 ->EventWithBus<bop::InteractableNotificationBus>(
                     "OnInteractableTriggerEntered", &bop::InteractableNotificationBus::Events::OnTriggerAreaEntered)
